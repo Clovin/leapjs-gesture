@@ -1,0 +1,31 @@
+{
+  "name": "leapjs-gesture",
+  "version": "0.1.0",
+  "description": "A collection of gesture-recoginze plugins available to be used with LeapJS.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "./node_modules/babel-cli/bin/babel-node.js --presets node6 ./test/node.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Clovin/leapjs-gesture.git"
+  },
+  "keywords": [
+    "LeapJS",
+    "gesture"
+  ],
+  "author": "Clovin",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Clovin/leapjs-gesture/issues"
+  },
+  "homepage": "https://github.com/Clovin/leapjs-gesture#readme",
+  "dependencies": {
+    "leapjs": "^0.6.4",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-node6": "^11.0.0"
+  }
+}
