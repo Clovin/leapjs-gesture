@@ -45,15 +45,15 @@
 
         //  judge whether the gesture is valid
         if (!(calAngle(hand.thumb.direction, hand.palmNormal) > 0.78 &&
-          calAngle(hand.indexFinger.direction, hand.palmNormal) > 0.78 &&
-          calAngle(hand.middleFinger.direction, hand.palmNormal) > 0.78 &&
-          calAngle(hand.ringFinger.direction, hand.palmNormal) > 0.78 &&
-          calAngle(hand.pinky.direction, hand.palmNormal) > 0.78 &&
-          hand.thumb.direction[2] < 0 &&
-          hand.indexFinger.direction[2] < 0 &&
-          hand.middleFinger.direction[2] < 0 &&
-          hand.ringFinger.direction[2] < 0 &&
-          hand.pinky.direction[2] < 0)) {
+            calAngle(hand.indexFinger.direction, hand.palmNormal) > 0.78 &&
+            calAngle(hand.middleFinger.direction, hand.palmNormal) > 0.78 &&
+            calAngle(hand.ringFinger.direction, hand.palmNormal) > 0.78 &&
+            calAngle(hand.pinky.direction, hand.palmNormal) > 0.78 &&
+            hand.thumb.direction[2] < 0 &&
+            hand.indexFinger.direction[2] < 0 &&
+            hand.middleFinger.direction[2] < 0 &&
+            hand.ringFinger.direction[2] < 0 &&
+            hand.pinky.direction[2] < 0)) {
           beginPos.set(hand.id, null)
           status.set(hand.id, null)
           beginDir.set(hand.id, null)
@@ -112,12 +112,9 @@
     }
   }
 
-  /* eslint-disable */
-  if ((typeof Leap !== 'undefined') && Leap.Controller) {
-    Leap.Controller.plugin('handSwipe', handSwipe)
-  } else if (typeof module !== 'undefined') {
+  if (typeof module !== 'undefined') {
     module.exports.handSwipe = handSwipe
   } else {
-    throw 'leap.js not included'
+    throw '\'typeof module\' is undefined'
   }
-}).call(this)
+}).call(typeof self !== 'undefined' ? self : this)

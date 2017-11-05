@@ -55,12 +55,9 @@
     }
   }
 
-  /* eslint-disable */
-  if ((typeof Leap !== 'undefined') && Leap.Controller) {
-    Leap.Controller.plugin('handFist', handFist)
-  } else if (typeof module !== 'undefined') {
+  if (typeof module !== 'undefined') {
     module.exports.handFist = handFist
   } else {
-    throw 'leap.js not included'
+    throw '\'typeof module\' is undefined'
   }
-}).call(this)
+}).call(typeof self !== 'undefined' ? self : this)
