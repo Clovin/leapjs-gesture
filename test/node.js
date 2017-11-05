@@ -9,11 +9,11 @@
 let Leap = require('leapjs')
 let _ = require('lodash')
 
-import handEntry from '../main/hand-entry/hand-entry.js'
-import handSwipe from '../main/hand-swipe/hand-swipe.js'
-import handFlip from '../main/hand-flip/hand-flip.js'
-import handFist from '../main/hand-fist/hand-fist.js'
-import handDrag from '../main/hand-drag/hand-drag.js'
+import handEntry from '../src/hand-entry/hand-entry.js'
+import handSwipe from '../src/hand-swipe/hand-swipe.js'
+import handFlip from '../src/hand-flip/hand-flip.js'
+import handFist from '../src/hand-fist/hand-fist.js'
+import handDrag from '../src/hand-drag/hand-drag.js'
 
 Leap.Controller.plugin('handEntry', handEntry.handEntry)
 Leap.Controller.plugin('handSwipe', handSwipe.handSwipe)

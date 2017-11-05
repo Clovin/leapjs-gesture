@@ -112,6 +112,7 @@
     }
   }
 
+  /* eslint-disable */
   if ((typeof Leap !== 'undefined') && Leap.Controller) {
     Leap.Controller.plugin('handSwipe', handSwipe)
   } else if (typeof module !== 'undefined') {

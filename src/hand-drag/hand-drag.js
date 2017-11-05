@@ -70,6 +70,7 @@
     }
   }
 
+  /* eslint-disable */
   if ((typeof Leap !== 'undefined') && Leap.Controller) {
     Leap.Controller.plugin('handDrag', handDrag)
   } else if (typeof module !== 'undefined') {

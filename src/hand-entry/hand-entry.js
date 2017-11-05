@@ -6,6 +6,10 @@
 
   let handEntry
 
+  function calAngle (a, b) {
+    return Math.acos((a[0] * b[0] + a[1] * b[1] + a[2] * b[2]) / (Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2)) * Math.sqrt(Math.pow(b[0], 2) + Math.pow(b[1], 2) + Math.pow(b[2], 2))))
+  }
+
   handEntry = function (options) {
     options || (options = {})
 
@@ -44,11 +48,26 @@
             this.emit('handLost', this.frame(1).hand(id))
             return true
           } else {
+            //  calculate position
             let iBox = frame.interactionBox
             iBox.size = options.size
             iBox.center = options.center
-
             frame.hand(id).pos = iBox.normalizePoint(frame.hand(id).palmPosition, true)
+
+            //  calculate direction
+            let temp = [calAngle(frame.hand(id).palmNormal, [1, 0, 0]), calAngle(frame.hand(id).palmNormal, [0, 1, 0])]
+            if (temp[0] <= 0.785) {
+              frame.hand(id).direction = 'right'
+            } else if (temp[0] >= 2.356) {
+              frame.hand(id).direction = 'left'
+            } else if (temp[1] <= 0.785) {
+              frame.hand(id).direction = 'top'
+            } else if (temp[1] >= 2.356) {
+              frame.hand(id).direction = 'bottom'
+            } else {
+              frame.hand(id).direction = null
+            }
+
             this.emit('handMove', frame.hand(id))
           }
         })
@@ -67,6 +86,7 @@
     }
   }
 
+  /* eslint-disable */
   if ((typeof Leap !== 'undefined') && Leap.Controller) {
     Leap.Controller.plugin('handEntry', handEntry)
   } else if (typeof module !== 'undefined') {

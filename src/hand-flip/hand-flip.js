@@ -89,6 +89,7 @@
     }
   }
 
+  /* eslint-disable */
   if ((typeof Leap !== 'undefined') && Leap.Controller) {
     Leap.Controller.plugin('handFlip', handFlip)
   } else if (typeof module !== 'undefined') {
