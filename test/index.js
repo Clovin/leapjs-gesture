@@ -1,25 +1,16 @@
 /**
- * Created by Clovin on 2017/7/30.
- */
-/**
- * A module that handle the Leap Motion's state
- *
- * Created by wenxiaoxin on 2017/4/22.
+ * Created by Clovin on 06/11/2017.
  */
 let Leap = require('leapjs')
 let _ = require('lodash')
 
-import handEntry from '../src/hand-entry/hand-entry.js'
-import handSwipe from '../src/hand-swipe/hand-swipe.js'
-import handFlip from '../src/hand-flip/hand-flip.js'
-import handFist from '../src/hand-fist/hand-fist.js'
-import handDrag from '../src/hand-drag/hand-drag.js'
+let gesture = require('../index')
 
-Leap.Controller.plugin('handEntry', handEntry.handEntry)
-Leap.Controller.plugin('handSwipe', handSwipe.handSwipe)
-Leap.Controller.plugin('handFlip', handFlip.handFlip)
-Leap.Controller.plugin('handFist', handFist.handFist)
-Leap.Controller.plugin('handDrag', handDrag.handDrag)
+Leap.Controller.plugin('handEntry', gesture.handEntry.handEntry)
+Leap.Controller.plugin('handSwipe', gesture.handSwipe.handSwipe)
+Leap.Controller.plugin('handFlip', gesture.handFlip.handFlip)
+Leap.Controller.plugin('handFist', gesture.handFist.handFist)
+Leap.Controller.plugin('handDrag', gesture.handDrag.handDrag)
 
 /**
  *  Set the Leap Motion Controller's config  and start it
@@ -27,7 +18,7 @@ Leap.Controller.plugin('handDrag', handDrag.handDrag)
  *  @date 2017/4/22
  *  @author Clovin
  */
-export function startLeap () {
+function startLeap () {
   let controller = new Leap.Controller({
     enableGestures: true,
     background: true,

@@ -2,8 +2,6 @@
  * Created by Clovin on 2017/7/4.
  */
 (function () {
-  let _ = require('lodash')
-
   let handSwipe
 
   function calAngle (a, b) {
@@ -24,7 +22,7 @@
     let activeHand = new Map()
     setInterval(function () {
       for (let key of activeHand.keys()) {
-        if (activeHand.get(key) < _.now() - 10000) {
+        if (activeHand.get(key) < Date.now() - 10000) {
           beginPos.delete(key)
           beginDir.delete(key)
           status.delete(key)
@@ -41,7 +39,7 @@
           beginDir.set(hand.id, null)
           status.set(hand.id, null)
         }
-        activeHand.set(hand.id, _.now())
+        activeHand.set(hand.id, Date.now())
 
         //  judge whether the gesture is valid
         if (!(calAngle(hand.thumb.direction, hand.palmNormal) > 0.78 &&
@@ -112,7 +110,9 @@
     }
   }
 
-  if (typeof module !== 'undefined') {
+  if ((typeof Leap !== 'undefined') && Leap.Controller) {
+    Leap.Controller.plugin('handSwipe', handSwipe);
+  } else if (typeof module !== 'undefined') {
     module.exports.handSwipe = handSwipe
   } else {
     throw '\'typeof module\' is undefined'

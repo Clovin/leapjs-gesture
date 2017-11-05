@@ -2,8 +2,6 @@
  * Created by Clovin on 2017/7/25.
  */
 (function () {
-  let _ = require('lodash')
-
   let handFist
 
   function calAngle (a, b) {
@@ -19,7 +17,7 @@
     let activeHand = new Map()
     setInterval(function () {
       for (let key of activeHand.keys()) {
-        if (activeHand.get(key) < _.now() - 10000) {
+        if (activeHand.get(key) < Date.now() - 10000) {
           status.delete(key)
           activeHand.delete(key)
         }
@@ -32,7 +30,7 @@
         if (!status.get(hand.id)) {
           status.set(hand.id, false)
         }
-        activeHand.set(hand.id, _.now())
+        activeHand.set(hand.id, Date.now())
 
         //  calculate the finger bone's direction with hand's palm direction
         let temp = [calAngle(hand.indexFinger.bones[1].direction(), hand.palmNormal),
@@ -55,7 +53,9 @@
     }
   }
 
-  if (typeof module !== 'undefined') {
+  if ((typeof Leap !== 'undefined') && Leap.Controller) {
+    Leap.Controller.plugin('handFist', handFist);
+  } else if (typeof module !== 'undefined') {
     module.exports.handFist = handFist
   } else {
     throw '\'typeof module\' is undefined'

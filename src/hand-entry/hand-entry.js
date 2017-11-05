@@ -2,8 +2,6 @@
  * Created by Clovin on 2017/6/30.
  */
 (function () {
-  let _ = require('lodash')
-
   let handEntry
 
   function calAngle (a, b) {
@@ -19,16 +17,22 @@
     let activeHandIds = []
 
     this.on('deviceStopped', function () {
-      _.remove(activeHandIds, (id) => {
-        this.emit('handLost', this.lastConnectionFrame.hand(id))
-        return true
+      let self = this
+
+      // emit event before clear activeHandIds array
+      activeHandIds.forEach(function (id) {
+        self.emit('handLost', this.lastConnectionFrame.hand(id))
       })
+
+      activeHandIds = []
     })
 
     return {
       frame: function (frame) {
-        let [newValidHandIds] = [null]
-        newValidHandIds = _.map(frame.hands, function (hand) {
+        let self = this
+
+        let newValidHandIds = null
+        newValidHandIds = frame.hands.map(function (hand) {
           let iBox = frame.interactionBox
           iBox.size = options.size
           iBox.center = options.center
@@ -40,13 +44,15 @@
         })
 
         //  find the lost hand and remove it from activeHandIds array
-        _.remove(activeHandIds, (id) => {
+        activeHandIds.forEach(function (id) {
           if (!id) {
             return
           }
-          if (!_.includes(newValidHandIds, id)) {
-            this.emit('handLost', this.frame(1).hand(id))
-            return true
+
+          if (!newValidHandIds.includes(id)) {
+            self.emit('handLost', self.frame(1).hand(id))
+
+            activeHandIds.splice(activeHandIds.indexOf(id), 1)
           } else {
             //  calculate position
             let iBox = frame.interactionBox
@@ -68,25 +74,28 @@
               frame.hand(id).direction = null
             }
 
-            this.emit('handMove', frame.hand(id))
+            self.emit('handMove', frame.hand(id))
           }
         })
 
         //  find the new hand and push it to the activeHandIds array
-        _.map(newValidHandIds, (id) => {
+        newValidHandIds.forEach(function (id) {
           if (!id) {
             return
           }
-          if (!_.includes(activeHandIds, id)) {
+
+          if (!activeHandIds.includes(id)) {
             activeHandIds.push(id)
-            this.emit('handFound', frame.hand(id))
+            self.emit('handFound', frame.hand(id))
           }
         })
       }
     }
   }
 
-  if (typeof module !== 'undefined') {
+  if ((typeof Leap !== 'undefined') && Leap.Controller) {
+    Leap.Controller.plugin('handEntry', handEntry)
+  } else if (typeof module !== 'undefined') {
     module.exports.handEntry = handEntry
   } else {
     throw '\'typeof module\' is undefined'
