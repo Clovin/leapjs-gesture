@@ -20,8 +20,7 @@
     "url": "https://github.com/Clovin/leapjs-gesture/issues"
   },
   "homepage": "https://github.com/Clovin/leapjs-gesture#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "leapjs": "^0.6.4"
   }

@@ -2,7 +2,6 @@
  * Created by Clovin on 06/11/2017.
  */
 let Leap = require('leapjs')
-let _ = require('lodash')
 
 let gesture = require('../index')
 
@@ -74,7 +73,7 @@ function startLeap () {
   })
 
   controller.on('handLost', (hand) => {
-    _.remove(currentHand, (id) => id === hand.id)
+    currentHand.splice(currentHand.indexOf(hand.id), 1)
     console.log('handLost! id: ', hand.id)
   })
 

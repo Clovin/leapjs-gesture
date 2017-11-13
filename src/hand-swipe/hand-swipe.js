@@ -11,7 +11,7 @@
   handSwipe = function (options) {
     options || (options = {})
 
-    options.verticle || (options.verticle = 70)
+    options.vertical || (options.vertical = 70)
     options.horizontal || (options.horizontal = 70)
 
     let beginPos = new Map()
@@ -97,11 +97,11 @@
           hand.swipeDirection = direction
           this.emit('handSwipe', hand)
           status.set(hand.id, 'left')
-        } else if (direction === 'top' && hand.palmPosition[1] - tempPos[1] >= options.verticle && status.get(hand.id) !== 'top') {
+        } else if (direction === 'top' && hand.palmPosition[1] - tempPos[1] >= options.vertical && status.get(hand.id) !== 'top') {
           hand.swipeDirection = direction
           this.emit('handSwipe', hand)
           status.set(hand.id, 'top')
-        } else if (direction === 'bottom' && tempPos[1] - hand.palmPosition[1] >= options.verticle && status.get(hand.id) !== 'bottom') {
+        } else if (direction === 'bottom' && tempPos[1] - hand.palmPosition[1] >= options.vertical && status.get(hand.id) !== 'bottom') {
           hand.swipeDirection = direction
           this.emit('handSwipe', hand)
           status.set(hand.id, 'bottom')
