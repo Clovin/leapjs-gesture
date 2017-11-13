@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Getting Started · GitBook</title>
+        <title>Plugins · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Plugins.html" />
+    <link rel="next" href="hand-drag.html" />
     
     
-    <link rel="prev" href="Installation.html" />
+    <link rel="prev" href="GettingStarted.html" />
     
 
     </head>
@@ -91,7 +91,7 @@
     
         <li class="chapter " data-level="1.1" data-path="./">
             
-                <a href="./">
+                <a href="_book">
             
                     
                     Introduction
@@ -115,7 +115,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="GettingStarted.html">
+        <li class="chapter " data-level="1.3" data-path="GettingStarted.html">
             
                 <a href="GettingStarted.html">
             
@@ -128,7 +128,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4" data-path="Plugins.html">
+        <li class="chapter active" data-level="1.4" data-path="Plugins.html">
             
                 <a href="Plugins.html">
             
@@ -242,7 +242,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Getting Started</a>
+        <a href="_book" >Plugins</a>
     </h1>
 </div>
 
@@ -257,62 +257,14 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="getting-started">Getting Started</h1>
-<p>You can run leapjs-gesture in Browser or Node.js. How to use it?</p>
-<h2 id="browser">Browser</h2>
-<ol>
-<li>Install leapjs-gesture.</li>
-<li><p>Add two <code>script</code>s to reference leap.js and leapjs-gesture.js. The leap.js file must place before leapjs-gesture.js.</p>
-<p>Example:</p>
-<pre><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../node_modules/leapjs/leap-0.6.4.min.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;../node_modules/leapjs-gesture/src/leapjs-gesture.js&quot;</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-</code></pre>
-</li>
-<li>Begin to use.<pre><code class="lang-js">Leap
-  .loop()
-  .use(<span class="hljs-string">&apos;handEntry&apos;</span>)
-  .use(<span class="hljs-string">&apos;handDrag&apos;</span>, {
-     distance: <span class="hljs-number">120</span>
-  })
-  .on(<span class="hljs-string">&apos;handFound&apos;</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{    
-     <span class="hljs-comment">// do something</span>
-  })
-</code></pre>
-</li>
-</ol>
-<h2 id="nodejs">Node.js</h2>
-<ol>
-<li>Install leapjs-gesture.</li>
-<li><p>Import leapjs and leapjs.gesture. Then use <code>Leap.Controller.plugin</code> to register plugins you need.</p>
-<pre><code class="lang-js"><span class="hljs-keyword">let</span> Leap = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;leapjs&apos;</span>)
-
-<span class="hljs-keyword">import</span> {handEntry,handSwipe,handFlip,handFist} <span class="hljs-keyword">from</span> <span class="hljs-string">&apos;leapjs-gesture&apos;</span>
-
-Leap.Controller.plugin(<span class="hljs-string">&apos;handEntry&apos;</span>, handEntry.handEntry)
-Leap.Controller.plugin(<span class="hljs-string">&apos;handSwipe&apos;</span>, handSwipe.handSwipe)
-Leap.Controller.plugin(<span class="hljs-string">&apos;handFlip&apos;</span>, handFlip.handFlip)
-Leap.Controller.plugin(<span class="hljs-string">&apos;handFist&apos;</span>, handFist.handFist)
-</code></pre>
-</li>
-<li><p>Let your controller use plugin, and then begin use them.</p>
-<pre><code class="lang-js"><span class="hljs-keyword">let</span> controller = <span class="hljs-keyword">new</span> Leap.Controller({
-    enableGestures: <span class="hljs-literal">true</span>,
-    background: <span class="hljs-literal">true</span>,
-    loopWhileDisconnected: <span class="hljs-string">&apos;true&apos;</span>
-  })
-
-controller.use(<span class="hljs-string">&apos;handEntry&apos;</span>)
-controller.use(<span class="hljs-string">&apos;handSwipe&apos;</span>, {
-  verticle: <span class="hljs-number">100</span>,
-  horizontal: <span class="hljs-number">120</span>
-})
-
-controller.on(<span class="hljs-string">&apos;handFound&apos;</span>, (hand) =&gt; {
-  <span class="hljs-comment">// do something</span>
-})
-</code></pre>
-</li>
-</ol>
+                                <h1 id="plugins">Plugins</h1>
+<ul>
+<li><a href="hand-drag.html">hand-drag</a></li>
+<li><a href="hand-entry.html">hand-entry</a></li>
+<li><a href="hand-fist.html">hand-fist</a></li>
+<li><a href="hand-flip.html">hand-flip</a></li>
+<li><a href="hand-swipe.html">hand-swipe</a></li>
+</ul>
 
                                 
                                 </section>
@@ -340,12 +292,12 @@ controller.on(<span class="hljs-string">&apos;handFound&apos;</span>, (hand) =&g
 
             
                 
-                <a href="Installation.html" class="navigation navigation-prev " aria-label="Previous page: Installation">
+                <a href="GettingStarted.html" class="navigation navigation-prev " aria-label="Previous page: Getting Started">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Plugins.html" class="navigation navigation-next " aria-label="Next page: Plugins">
+                <a href="hand-drag.html" class="navigation navigation-next " aria-label="Next page: hand-drag">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -356,7 +308,7 @@ controller.on(<span class="hljs-string">&apos;handFound&apos;</span>, (hand) =&g
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Getting Started","level":"1.3","depth":1,"next":{"title":"Plugins","level":"1.4","depth":1,"path":"Plugins.md","ref":"Plugins.md","articles":[{"title":"hand-drag","level":"1.4.1","depth":2,"path":"hand-drag.md","ref":"hand-drag.md","articles":[]},{"title":"hand-entry","level":"1.4.2","depth":2,"path":"hand-entry.md","ref":"hand-entry.md","articles":[]},{"title":"hand-fist","level":"1.4.3","depth":2,"path":"hand-fist.md","ref":"hand-fist.md","articles":[]},{"title":"hand-flip","level":"1.4.4","depth":2,"path":"hand-flip.md","ref":"hand-flip.md","articles":[]},{"title":"hand-swipe","level":"1.4.5","depth":2,"path":"hand-swipe.md","ref":"hand-swipe.md","articles":[]}]},"previous":{"title":"Installation","level":"1.2","depth":1,"path":"Installation.md","ref":"Installation.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"GettingStarted.md","mtime":"2017-11-13T18:50:27.694Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-13T18:12:52.053Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Plugins","level":"1.4","depth":1,"next":{"title":"hand-drag","level":"1.4.1","depth":2,"path":"hand-drag.md","ref":"hand-drag.md","articles":[]},"previous":{"title":"Getting Started","level":"1.3","depth":1,"path":"GettingStarted.md","ref":"GettingStarted.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Plugins.md","mtime":"2017-11-13T20:00:08.140Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-13T18:12:52.053Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
